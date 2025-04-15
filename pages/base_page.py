@@ -1,6 +1,7 @@
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.base_page_locators import BasePageLocators
+from data import DaraUrl
 import allure
 
 
@@ -22,6 +23,10 @@ class BasePageScooter:
     def wait_and_open_tab(self, timeout=10):
         def wait_and_open_tab(self):
             WebDriverWait(self.driver, 10).until(expected_conditions.number_of_windows_to_be(2))
+
+    #Переключение на вкладку Дзена
+    def switch_to_last_tab(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
 
     # ждём, пока отобразится заголовок страницы Дзен
     def wait_and_title_tab(self):
@@ -48,3 +53,11 @@ class BasePageScooter:
     # Открытие страницы
     def open_page(self, url):
         self.driver.get(url)
+
+    # Проверяет, что открыта главная страница
+    def is_main_page_opened(self):
+        return self.driver.current_url == DaraUrl.SCOOTER
+
+    # Возвращает текущий URL
+    def get_current_url(self):
+        return self.driver.current_url

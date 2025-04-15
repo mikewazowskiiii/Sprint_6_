@@ -56,6 +56,7 @@ class OrderPageScooter(BasePageScooter):
     def successful_order(self):
         return self.driver.find_element(*OrderPageLocators.VIEW_STATUS_BUTTON).text
 
+
     # ШАГИ ДЛЯ СОКРАЩЕНИЯ ТЕСТОВ
     # Первый ШАГ в заполнении заказа
     @allure.step('Заполняем поля на первой странице заказа: имя, фамилию, адрес, метро, телефон, затем переходим к следующему шагу')

@@ -40,7 +40,7 @@ class TestOrderScooter:
         test_order_scooter = OrderPageScooter(driver)
         test_order_scooter.open_page(DaraUrl.SCOOTER + 'order')
         test_order_scooter.click_header_scooter()
-        assert driver.current_url == DaraUrl.SCOOTER
+        assert test_order_scooter.is_main_page_opened()
 
     @allure.title('Проверка перехода на страницу Дзена')
     @allure.description('Если нажать на логотип Яндекса, в новом окне через редирект откроется главная страница Дзена.')
@@ -49,6 +49,6 @@ class TestOrderScooter:
         test_order_scooter.open_page(DaraUrl.SCOOTER)
         test_order_scooter.click_header_yandex()
         test_order_scooter.wait_and_open_tab()
-        driver.switch_to.window(driver.window_handles[-1])
+        test_order_scooter.switch_to_last_tab()
         test_order_scooter.wait_and_title_tab()
         assert DaraUrl.DZEN in driver.current_url
